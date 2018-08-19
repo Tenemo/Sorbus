@@ -1,0 +1,8 @@
+@import 'fonts';
+
+$primary: rgb(233, 231, 231);
+$secondary: rgb(63, 63, 63);
+$contrast: rgb(212, 96, 0);
+
+$primary-bg: darken($secondary, 10%);
+$secondary-bg: $secondary;

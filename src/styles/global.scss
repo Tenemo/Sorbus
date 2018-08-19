@@ -1,0 +1,19 @@
+@import 'variables';
+html {
+    background-color: $primary-bg;
+    color: $primary;
+    font-family: $primary-font;
+    word-break: normal; // sanitize.css overwrite
+}
+
+a {
+    color: $contrast;
+}
+
+.mainContainer {
+    padding-top: 50px;
+}
+
+section {
+    padding: 10px;
+}
