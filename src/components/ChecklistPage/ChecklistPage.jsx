@@ -1,21 +1,37 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './checklistPage.scss';
 
 import Task from './Task/Task';
 import TaskList from './TaskList/TaskList';
 
-export class HomePage extends React.Component {
+export class ChecklistPage extends React.Component {
     render() {
         return (
             <section className="checklistPage">
             <div className="sidebar">
                 <TaskList />
             </div>
-            <Task />
+                <Switch>
+                    <Route
+                        exact
+                        path="/"
+                        component={Task}
+                    />
+                    <Route
+                        path="/settings/:taskId"
+                        component={Task}
+                    />
+                </Switch>
             </section>
 
         );
     }
 }
 
-export default HomePage;
+function mapDispatchToProps(dispatch) {
+    return {
+    };
+}
+
+export default ChecklistPage;

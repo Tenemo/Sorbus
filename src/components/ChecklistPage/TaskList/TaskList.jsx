@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './taskList.scss';
 
 class TaskList extends Component {
     render() {
         return (
             <div>
-                list of tasks
+                {this.props.tasks.valueSeq().map((value) =>
+                    <div
+                        key={value.id}
+                        className="taskListItem"
+                    >
+                    {value.get('name')}
+                    </div>
+                )}
             </div>
         );
     }
 }
+
+TaskList.propTypes = {
+    tasks: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
     return {

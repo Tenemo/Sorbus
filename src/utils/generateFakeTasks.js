@@ -1,5 +1,6 @@
 import fs from 'fs';
 import casual  from 'casual';
+import crypto from 'crypto';
 
 /**
 * Generates a random number between two integers, inclusive.
@@ -12,35 +13,44 @@ function randBetween(min, max) {
    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function generateSubTasks(maxDepth = 5) {
+function generateSubTasks(tasks, maxDepth = 5, level = 2) {
     maxDepth--;
-    const subTasks = {};
+    const children = {};
     if (maxDepth > 0) {
         for (let i = 0; i < randBetween(3, 12); i++) {
-            subTasks[i + 1] = {
-                id: i + 1,
-                name: casual.catch_phrase,
-                author: casual.full_name,
-                text: casual.sentences(randBetween(60, 120)),
+            const name = casual.catch_phrase;
+            const taskId = crypto.createHash('md5').update(name + Date.now()).digest('hex');
+            tasks[taskId] = {
+                name,
                 isDone: false,
-                children: generateSubTasks(randBetween(1, maxDepth))
+                level,
+                urlString: name.replace(/\s+/g, '-').toLowerCase() + '-' + taskId.substring(0,8),
+                id: taskId,
+                description: casual.sentences(randBetween(1, 2)),
+                children: generateSubTasks(tasks, randBetween(1, maxDepth), level + 1),
+                text: casual.sentences(randBetween(10, 40))
             };
+            children[i + 1] = taskId;
         }
     }
-    return subTasks;
+    return children;
 
 }
 
 function generateTasks() {
     const tasks = {};
     for (let i = 0; i < randBetween(4, 7); i++) {
-        tasks[i + 1] = {
-            id: i + 1,
-            name: casual.catch_phrase,
-            author: casual.full_name,
-            text: casual.sentences(randBetween(10, 40)),
+        const name = casual.catch_phrase;
+        const taskId = crypto.createHash('md5').update(name + Date.now()).digest('hex');
+        tasks[taskId] = {
+            name,
             isDone: false,
-            children: generateSubTasks()
+            level: 1,
+            urlString: '',
+            id: taskId,
+            description: casual.sentences(randBetween(1, 3)),
+            children: generateSubTasks(tasks),
+            text: casual.sentences(randBetween(10, 40))
         };
     }
     return tasks;
