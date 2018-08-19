@@ -1,0 +1,15 @@
+@import 'variables';
+.header {
+    background-color: $secondary-bg;
+    position: fixed;
+    width: 100%;
+    .navbar {
+        height: 50px;
+        .nav-item {
+            display: inline-block;
+            list-style-type: none;
+            padding-top: 15px;
+            padding-left: 15px;
+        }
+    }
+}

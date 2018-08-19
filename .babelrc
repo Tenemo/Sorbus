@@ -1,0 +1,49 @@
+{
+    "env": {
+        "production": {
+            "plugins": [
+                "transform-react-remove-prop-types"
+            ]
+        }
+    },
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "browsers": [
+                        "last 2 versions",
+                        "Explorer 11"
+                    ]
+                },
+                "useBuiltIns": true
+            }
+        ],
+        "react",
+        "stage-1"
+    ],
+    "ignore": [
+        "node_modules"
+    ],
+    "plugins": [
+        "react-hot-loader/babel",
+        "transform-react-jsx-source",
+        "transform-es2015-modules-commonjs",
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./"
+                ],
+                "alias": {
+                    "actions": "./src/actions",
+                    "components": "./src/components",
+                    "reducers": "./src/reducers",
+                    "static": "./src/static",
+                    "styles": "./src/styles",
+                    "utils": "./src/utils"
+                }
+            }
+        ]
+    ]
+}
