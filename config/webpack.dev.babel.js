@@ -23,9 +23,10 @@ export default {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Magnolia',
+            title: 'Sorbus',
             template: 'src/index.html',
-            inject: 'true'
+            inject: 'true',
+            favicon: 'src/favicon.ico'
         })
     ],
     performance: {

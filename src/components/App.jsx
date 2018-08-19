@@ -11,6 +11,7 @@ import * as dataDisplayActions from 'actions/tasksActions';
 import Header from './common/Header/Header';
 import NotFound from './NotFound/NotFound';
 import ChecklistPage from 'components/ChecklistPage/ChecklistPage';
+import EditorPage from 'components/EditorPage/EditorPage';
 
 export class App extends React.Component {
     render() {
@@ -23,6 +24,11 @@ export class App extends React.Component {
                             exact
                             path="/"
                             component={ChecklistPage}
+                        />
+                        <Route
+                            exact
+                            path="/editor"
+                            component={EditorPage}
                         />
                         <Route
                             path=""

@@ -1,5 +1,5 @@
 @import 'variables';
-.header {
+header {
     background-color: $secondary-bg;
     position: fixed;
     width: 100%;
@@ -10,6 +10,10 @@
             list-style-type: none;
             padding-top: 15px;
             padding-left: 15px;
+            :hover {
+                color: white;
+                text-decoration: none;
+            }
         }
     }
 }

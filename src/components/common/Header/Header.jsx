@@ -5,7 +5,7 @@ import './header.scss';
 export class Header extends React.Component {
     render() {
         return (
-            <div className="header">
+            <header>
                 <nav className="navbar">
                     <li className="nav-item">
                         <NavLink
@@ -13,11 +13,20 @@ export class Header extends React.Component {
                             to="/"
                             className="nav-link"
                         >
-                            Home
+                            Checklist
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink
+                            exact
+                            to="/editor"
+                            className="nav-link"
+                        >
+                            Editor
                         </NavLink>
                     </li>
                 </nav>
-            </div>
+            </header>
         );
     }
 }

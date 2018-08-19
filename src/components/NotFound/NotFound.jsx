@@ -1,11 +1,14 @@
 import React from 'react';
+import shrugFlower from 'static/shrugFlower.png';
+import './notFound.scss';
 
 class NotFound extends React.Component {
     render() {
         return (
-            <section>
-                <h2>404</h2>
-                <h4>Sorry, not found!</h4>
+            <section className="notFound">
+                <h1>404</h1>
+                <img src={shrugFlower} />
+                <h2>Sorry, not found!</h2>
             </section>
         );
     }
