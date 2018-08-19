@@ -1,10 +1,10 @@
 import { fromJS } from 'immutable';
-const tasks = {
-};
+import fakeTasks from '../utils/fakeTasks.json';
+
 const editor = {
 };
 const initialState = fromJS({
     editor,
-    tasks
+    tasks: fakeTasks
 });
 export default initialState;
