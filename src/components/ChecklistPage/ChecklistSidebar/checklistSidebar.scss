@@ -1,6 +1,12 @@
 @import 'variables';
 
 .checklistSidebar{
+    ol {
+        padding-left: 25px;
+    }
+    li {
+        padding-top: 5px;
+    }
     user-select: none;
     .rootTask {
         font-weight: bold;

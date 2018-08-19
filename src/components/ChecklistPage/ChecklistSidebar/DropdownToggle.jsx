@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DropdownToggle = ({toggleExpanded, taskid, isExpanded}) => {
+const DropdownToggle = ({toggleTaskExpanded, taskId, isExpanded}) => {
     return (
         <span
             className="dropdownToggle"
-            onClick={toggleExpanded}
-            taskid={taskid}
+            onClick={toggleTaskExpanded}
+            taskid={taskId}
         >
             {(isExpanded) ? <React.Fragment>v</React.Fragment> : <React.Fragment>&#62;</React.Fragment>}
             &nbsp;
@@ -15,8 +15,8 @@ const DropdownToggle = ({toggleExpanded, taskid, isExpanded}) => {
 };
 
 DropdownToggle.propTypes = {
-    toggleExpanded: PropTypes.func.isRequired,
-    taskid: PropTypes.string.isRequired,
+    toggleTaskExpanded: PropTypes.func.isRequired,
+    taskId: PropTypes.string.isRequired,
     isExpanded: PropTypes.bool.isRequired
 };
 

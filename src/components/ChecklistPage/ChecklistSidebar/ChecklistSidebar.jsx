@@ -10,33 +10,43 @@ import DropdownToggle from './DropdownToggle';
 
 class ChecklistSidebar extends Component {
     toggleTaskExpanded = event => {
+        event.preventDefault();
         this.props.actions.toggleTaskExpanded(event.target.getAttribute('taskid'));
     }
     render() {
         return (
-            <ol className="checklistSidebar">
-                {this.props.rootTasks.map(rootTaskId => {
-                    const task = this.props.tasksData.get(rootTaskId);
-                    return (
-                        <li
-                            key={rootTaskId}
-                            className="taskList rootTask"
-                        >
-                            {!task.get('children').isEmpty() &&
-                                <DropdownToggle
-                                    toggleExpanded={this.toggleTaskExpanded}
-                                    taskid={rootTaskId}
-                                    isExpanded={task.get('isExpanded')}
-                                />
-                            }
-                            <Link to={'/checklist/' + task.get('urlString')}>
-                                {task.get('name')}
-                            </Link>
-                            {task.get('isExpanded') ? <TaskList taskId={rootTaskId} /> : null}
-                        </li>
-                    );
-                })}
-            </ol>
+            <div className="checklistSidebar">
+                <ol className="taskList">
+                    {this.props.rootTasks.map(rootTaskId => {
+                        const task = this.props.tasksData.get(rootTaskId);
+                        return (
+                            <li
+                                key={rootTaskId}
+                                className="taskListItem"
+                            >
+                                {!task.get('children').isEmpty() &&
+                                    <DropdownToggle
+                                        toggleTaskExpanded={this.toggleTaskExpanded}
+                                        taskId={rootTaskId}
+                                        isExpanded={task.get('isExpanded')}
+                                    />
+                                }
+                                <Link
+                                    className="rootTask"
+                                    to={'/checklist/' + task.get('urlString')}
+                                >
+                                    {task.get('name')}
+                                </Link>
+                                {task.get('isExpanded') ?
+                                    <TaskList
+                                        tasks={task.get('children')}
+                                    />
+                                : null}
+                            </li>
+                        );
+                    })}
+                </ol>
+            </div>
         );
     }
 }

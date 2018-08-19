@@ -13,11 +13,11 @@ function randBetween(min, max) {
    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function generateSubTasks(tasks, maxDepth = 5, level = 1) {
+function generateSubTasks(tasks, maxDepth = 4, level = 1) {
     maxDepth--;
-    const children = {};
+    const children = [];
     if (maxDepth > 0) {
-        for (let i = 0; i < randBetween(3, 12); i++) {
+        for (let i = 0; i < randBetween(3, 7); i++) {
             const name = casual.catch_phrase;
             const taskId = crypto.createHash('md5').update(name + Date.now()).digest('hex');
             tasks[taskId] = {
@@ -30,9 +30,9 @@ function generateSubTasks(tasks, maxDepth = 5, level = 1) {
                 id: taskId,
                 description: casual.sentences(randBetween(1, 2)),
                 children: generateSubTasks(tasks, randBetween(1, maxDepth), level + 1),
-                text: casual.sentences(randBetween(30, 160))
+                text: casual.sentences(randBetween(15, 60))
             };
-            children[i + 1] = taskId;
+            children[i] = taskId;
         }
     }
     return children;
@@ -41,7 +41,7 @@ function generateSubTasks(tasks, maxDepth = 5, level = 1) {
 
 function generateTasks() {
     const tasks = {};
-    for (let i = 0; i < randBetween(7, 11); i++) {
+    for (let i = 0; i < randBetween(7, 8); i++) {
         const name = casual.catch_phrase;
         const taskId = crypto.createHash('md5').update(name + Date.now()).digest('hex');
         tasks[taskId] = {
@@ -54,7 +54,7 @@ function generateTasks() {
             id: taskId,
             description: casual.sentences(randBetween(1, 3)),
             children: generateSubTasks(tasks),
-            text: casual.sentences(randBetween(30, 160))
+            text: casual.sentences(randBetween(15, 60))
         };
     }
     return tasks;
