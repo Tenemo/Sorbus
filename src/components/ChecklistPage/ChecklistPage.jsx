@@ -1,37 +1,49 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './checklistPage.scss';
 
 import Task from './Task/Task';
-import TaskList from './TaskList/TaskList';
+import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
 
 export class ChecklistPage extends React.Component {
     render() {
+
         return (
             <section className="checklistPage">
-            <div className="sidebar">
-                <TaskList />
-            </div>
-                <Switch>
-                    <Route
-                        exact
-                        path="/"
-                        component={Task}
-                    />
-                    <Route
-                        path="/settings/:taskId"
-                        component={Task}
-                    />
-                </Switch>
+                <div className="sidebar">
+                    <ChecklistSidebar />
+                </div >
+                <div className="taskContainer">
+                    <Switch>
+                        <Route
+                            path={this.props.match.url + '/:taskUrl'}
+                            component={Task}
+                        />
+                        <Route
+                            path=""
+                            exact
+                            component={()=> 'Choose a task!'} // eslint-disable-line react/jsx-no-bind
+                        />
+                    </Switch>
+                </div >
             </section>
 
         );
     }
 }
 
+ChecklistPage.propTypes = {
+    match: PropTypes.object
+};
+
 function mapDispatchToProps(dispatch) {
     return {
     };
 }
 
-export default ChecklistPage;
+export default withRouter(connect(
+    null,
+    mapDispatchToProps
+)(ChecklistPage));

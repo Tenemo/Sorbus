@@ -10,7 +10,7 @@ export class Header extends React.Component {
                     <li className="nav-item">
                         <NavLink
                             exact
-                            to="/"
+                            to="/checklist"
                             className="nav-link"
                         >
                             Checklist

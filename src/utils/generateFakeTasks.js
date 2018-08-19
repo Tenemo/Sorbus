@@ -13,7 +13,7 @@ function randBetween(min, max) {
    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function generateSubTasks(tasks, maxDepth = 5, level = 2) {
+function generateSubTasks(tasks, maxDepth = 5, level = 1) {
     maxDepth--;
     const children = {};
     if (maxDepth > 0) {
@@ -23,12 +23,14 @@ function generateSubTasks(tasks, maxDepth = 5, level = 2) {
             tasks[taskId] = {
                 name,
                 isDone: false,
+                index: i,
                 level,
+                isExpanded: false,
                 urlString: name.replace(/\s+/g, '-').toLowerCase() + '-' + taskId.substring(0,8),
                 id: taskId,
                 description: casual.sentences(randBetween(1, 2)),
                 children: generateSubTasks(tasks, randBetween(1, maxDepth), level + 1),
-                text: casual.sentences(randBetween(10, 40))
+                text: casual.sentences(randBetween(30, 160))
             };
             children[i + 1] = taskId;
         }
@@ -39,26 +41,42 @@ function generateSubTasks(tasks, maxDepth = 5, level = 2) {
 
 function generateTasks() {
     const tasks = {};
-    for (let i = 0; i < randBetween(4, 7); i++) {
+    for (let i = 0; i < randBetween(7, 11); i++) {
         const name = casual.catch_phrase;
         const taskId = crypto.createHash('md5').update(name + Date.now()).digest('hex');
         tasks[taskId] = {
             name,
             isDone: false,
-            level: 1,
-            urlString: '',
+            index: i,
+            level: 0,
+            isExpanded: false,
+            urlString: name.replace(/\s+/g, '-').toLowerCase() + '-' + taskId.substring(0,8),
             id: taskId,
             description: casual.sentences(randBetween(1, 3)),
             children: generateSubTasks(tasks),
-            text: casual.sentences(randBetween(10, 40))
+            text: casual.sentences(randBetween(30, 160))
         };
     }
     return tasks;
 }
 
+function generateTasksUrlMap(tasks) {
+    const tasksUrlMap = {};
+    for (const taskId in tasks) {
+        tasksUrlMap[tasks[taskId].urlString] = taskId;
+    }
+    return tasksUrlMap;
+}
+
 export function generateData() {
     const path = `${__dirname}/fakeTasks.json`;
-    fs.writeFileSync(path, JSON.stringify(generateTasks(), null, 4), (err) => {
+    const tasks = generateTasks();
+    const data = {
+        rootTasks: Object.values(tasks).filter(value => value.level === 0).map(value => value.id),
+        tasksUrlMap: generateTasksUrlMap(tasks),
+        tasksData: tasks
+    };
+    fs.writeFileSync(path, JSON.stringify(data, null, 4), (err) => {
         if (err) {
             console.log(err); // eslint-disable-line no-console
         }

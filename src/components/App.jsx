@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,9 +20,13 @@ export class App extends React.Component {
                 <Header />
                 <div className="mainContainer">
                     <Switch>
-                        <Route
+                        <Redirect
                             exact
-                            path="/"
+                            from="/"
+                            to="/checklist"
+                        />
+                        <Route
+                            path="/checklist"
                             component={ChecklistPage}
                         />
                         <Route
