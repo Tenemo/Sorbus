@@ -2,7 +2,7 @@
 
 exports[`HomePage matches snapshot 1`] = `
 <section
-  className="home"
+  className="editorPage"
 >
   Editor goes here
 </section>

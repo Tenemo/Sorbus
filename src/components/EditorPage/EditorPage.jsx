@@ -1,10 +1,10 @@
 import React from 'react';
 import './editorPage.scss';
 
-export class HomePage extends React.Component {
+export class EditorPage extends React.Component {
     render() {
         return (
-            <section className="home">
+            <section className="editorPage">
                 Editor goes here
             </section>
 
@@ -12,4 +12,4 @@ export class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default EditorPage;

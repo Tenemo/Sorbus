@@ -1,6 +1,6 @@
 {
     "name": "sorbus",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -73,7 +73,7 @@
         "browser-sync": "^2.24.6",
         "casual": "^1.5.19",
         "chalk": "^2.4.1",
-        "concurrently": "^3.5.0",
+        "concurrently": "3.5.0",
         "css-loader": "^1.0.0",
         "enzyme": "^3.4.4",
         "enzyme-adapter-react-16": "^1.2.0",
