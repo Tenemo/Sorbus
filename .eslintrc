@@ -5,11 +5,16 @@
         "plugin:import/warnings",
         "plugin:import/errors",
         "plugin:import/react",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:jest/recommended",
+        "plugin:jsx-a11y/recommended"
     ],
     "plugins": [
         "react",
-        "import"
+        "import",
+        "jest",
+        "jsx-a11y",
+        "jsdoc"
     ],
     "parser": "babel-eslint",
     "parserOptions": {
@@ -22,7 +27,8 @@
     "env": {
         "es6": true,
         "browser": true,
-        "node": true
+        "node": true,
+        "jest": true
     },
     "settings": {
         "import/resolver": {
@@ -34,6 +40,11 @@
                 ]
             }
         }
+    },
+    "globals": {
+        "shallow": true,
+        "render": true,
+        "mount": true
     },
     "rules": {
         "quotes": [
@@ -100,6 +111,21 @@
         "react/react-in-jsx-scope": 1,
         "react/self-closing-comp": 1,
         "react/sort-comp": 1,
-        "import/no-named-as-default": 0
+        "import/no-named-as-default": 0,
+        "jsdoc/check-param-names": 1,
+        "jsdoc/check-tag-names": 1,
+        "jsdoc/check-types": 1,
+        "jsdoc/newline-after-description": 1,
+        "jsdoc/no-undefined-types": 1,
+        "jsdoc/require-description-complete-sentence": 1,
+        "jsdoc/require-example": 0,
+        "jsdoc/require-hyphen-before-param-description": 1,
+        "jsdoc/require-param": 1,
+        "jsdoc/require-param-description": 1,
+        "jsdoc/require-param-name": 1,
+        "jsdoc/require-param-type": 1,
+        "jsdoc/require-returns-description": 1,
+        "jsdoc/require-returns-type": 1,
+        "jsdoc/valid-types": 1
     }
 }

@@ -8,7 +8,10 @@ class NotFound extends React.Component {
         return (
             <section className="notFound">
                 <h1>404</h1>
-                <img src={shrugFlower} />
+                <img
+                    src={shrugFlower}
+                    alt="Flower shrugging and smirking, because the page was not found."
+                />
                 <h2>Sorry, {this.props.name} not found!</h2>
             </section>
         );

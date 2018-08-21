@@ -24,7 +24,7 @@ export class ChecklistPage extends React.Component {
                         <Route
                             path=""
                             exact
-                            component={()=> 'Choose a task!'} // eslint-disable-line react/jsx-no-bind
+                            component={() => 'Choose a task!'} // eslint-disable-line react/jsx-no-bind
                         />
                     </Switch>
                 </div >
