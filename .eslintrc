@@ -7,7 +7,8 @@
         "plugin:import/react",
         "plugin:react/recommended",
         "plugin:jest/recommended",
-        "plugin:jsx-a11y/recommended"
+        "plugin:jsx-a11y/strict",
+        "airbnb"
     ],
     "plugins": [
         "react",
@@ -47,9 +48,25 @@
         "mount": true
     },
     "rules": {
+        "react/jsx-one-expression-per-line": 0,
+        "react/prefer-stateless-function": 0,
+        "react/destructuring-assignment": 0,
         "quotes": [
             1,
             "single"
+        ],
+        "linebreak-style": 0,
+        "indent": [
+            1,
+            4
+        ],
+        "react/jsx-indent": [
+            1,
+            4
+        ],
+        "react/jsx-indent-props": [
+            1,
+            4
         ],
         "no-console": 1,
         "no-debugger": 1,
@@ -71,6 +88,12 @@
             }
         ],
         "jsx-quotes": 1,
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
         "react/display-name": [
             1,
             {
@@ -88,7 +111,6 @@
         "react/jsx-boolean-value": 1,
         "react/jsx-closing-bracket-location": 1,
         "react/jsx-curly-spacing": 1,
-        "react/jsx-indent-props": 1,
         "react/jsx-key": 1,
         "react/jsx-max-props-per-line": 1,
         "react/jsx-no-bind": 1,

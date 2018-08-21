@@ -7,7 +7,6 @@ export class EditorPage extends React.Component {
             <section className="editorPage">
                 Editor goes here
             </section>
-
         );
     }
 }

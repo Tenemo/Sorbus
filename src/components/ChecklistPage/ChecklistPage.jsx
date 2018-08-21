@@ -9,16 +9,15 @@ import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
 
 export class ChecklistPage extends React.Component {
     render() {
-
         return (
             <section className="checklistPage">
                 <div className="sidebar">
                     <ChecklistSidebar />
-                </div >
+                </div>
                 <div className="taskContainer">
                     <Switch>
                         <Route
-                            path={this.props.match.url + '/:taskUrl'}
+                            path={`${this.props.match.url}/:taskUrl`}
                             component={Task}
                         />
                         <Route
@@ -27,7 +26,7 @@ export class ChecklistPage extends React.Component {
                             component={() => 'Choose a task!'} // eslint-disable-line react/jsx-no-bind
                         />
                     </Switch>
-                </div >
+                </div>
             </section>
 
         );
@@ -35,7 +34,10 @@ export class ChecklistPage extends React.Component {
 }
 
 ChecklistPage.propTypes = {
-    match: PropTypes.object
+    match: PropTypes.object,
+};
+ChecklistPage.defaultProps = {
+    match: null,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -45,5 +47,5 @@ function mapDispatchToProps(dispatch) {
 
 export default withRouter(connect(
     null,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(ChecklistPage));

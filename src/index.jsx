@@ -13,5 +13,5 @@ render(
             history={history}
         />
     ),
-    document.getElementById('app')
+    document.getElementById('app'),
 );

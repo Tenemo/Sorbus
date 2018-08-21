@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import DropdownToggle from '../DropdownToggle';
 import * as tasksActions from 'actions/tasksActions';
 import { bindActionCreators } from 'redux';
+import DropdownToggle from '../DropdownToggle';
 
 class TaskList extends Component {
-    toggleTaskExpanded = event => {
+    toggleTaskExpanded = (event) => {
         event.preventDefault();
         this.props.actions.toggleTaskExpanded(event.target.getAttribute('taskid'));
     }
+
     render() {
         return (
             <ol className="taskList">
@@ -21,18 +22,20 @@ class TaskList extends Component {
                             key={childId}
                             className="taskListItem"
                         >
-                            {!child.get('children').isEmpty() &&
-                                <DropdownToggle
-                                    toggleTaskExpanded={this.toggleTaskExpanded}
-                                    taskId={childId}
-                                    isExpanded={child.get('isExpanded')}
-                                />
+                            {!child.get('children').isEmpty()
+                                && (
+                                    <DropdownToggle
+                                        toggleTaskExpanded={this.toggleTaskExpanded}
+                                        taskId={childId}
+                                        isExpanded={child.get('isExpanded')}
+                                    />
+                                )
                             }
-                            <Link to={'/checklist/' + child.get('urlString')}>
+                            <Link to={`/checklist/${child.get('urlString')}`}>
                                 {child.get('name')}
                             </Link>
-                            {child.get('isExpanded') &&
-                                <TaskListWrapper tasks={child.get('children')} />
+                            {child.get('isExpanded')
+                                && <TaskListWrapper tasks={child.get('children')} />
                             }
                         </li>
                     );
@@ -50,18 +53,19 @@ TaskList.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        tasksData: state.get('tasks').get('tasksData')
+        tasksData: state.get('tasks').get('tasksData'),
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(tasksActions, dispatch)
+        actions: bindActionCreators(tasksActions, dispatch),
     };
 }
 
 const TaskListWrapper = connect(
     mapStateToProps,
-    mapDispatchToProps)(TaskList);
+    mapDispatchToProps,
+)(TaskList);
 
 export default TaskListWrapper;

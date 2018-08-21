@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import {
+    Route, Switch, Redirect, withRouter,
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,10 +10,10 @@ import 'sanitize.css';
 import '../styles/global.scss';
 
 import * as dataDisplayActions from 'actions/tasksActions';
-import Header from './common/Header/Header';
-import NotFound from './NotFound/NotFound';
 import ChecklistPage from 'components/ChecklistPage/ChecklistPage';
 import EditorPage from 'components/EditorPage/EditorPage';
+import Header from './common/Header/Header';
+import NotFound from './NotFound/NotFound';
 
 export class App extends React.Component {
     render() {
@@ -47,16 +49,16 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
 };
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(dataDisplayActions, dispatch)
+        actions: bindActionCreators(dataDisplayActions, dispatch),
     };
 }
 
 export default withRouter(connect(
     null,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(App));

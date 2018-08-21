@@ -4,7 +4,7 @@ import editor from './editorReducer';
 
 const rootReducer = combineReducers({
     editor,
-    tasks
+    tasks,
 });
 
 export default rootReducer;

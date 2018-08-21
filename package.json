@@ -43,6 +43,7 @@
         "testEnvironment": "node"
     },
     "dependencies": {
+        "babel-polyfill": "^6.26.0",
         "connected-react-router": "^4.4.1",
         "history": "^4.7.2",
         "immutable": "^4.0.0-rc.9",
@@ -74,6 +75,7 @@
         "casual": "^1.5.19",
         "chalk": "^2.4.1",
         "concurrently": "3.5.0",
+        "connect-history-api-fallback": "^1.5.0",
         "css-loader": "^1.0.0",
         "enzyme": "^3.4.4",
         "enzyme-adapter-react-16": "^1.2.0",
@@ -89,6 +91,7 @@
         "eslint-plugin-jsx-a11y": "^6.1.1",
         "eslint-plugin-react": "^7.11.1",
         "eslint-watch": "^4.0.2",
+        "eventsource-polyfill": "^0.9.6",
         "file-loader": "^1.1.11",
         "html-webpack-plugin": "^3.2.0",
         "image-webpack-loader": "^4.3.1",

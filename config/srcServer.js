@@ -3,7 +3,7 @@ import historyApiFallback from 'connect-history-api-fallback'; // https://github
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from './webpack.dev.babel';
+import config from './webpack.dev';
 
 const bundler = webpack(config);
 
@@ -12,7 +12,7 @@ browserSync({
     port: 3000,
     logLevel: 'silent',
     ui: {
-        port: 3001
+        port: 3001,
     },
     open: false,
     cors: true,
@@ -25,8 +25,8 @@ browserSync({
             webpackDevMiddleware(bundler, {
                 // Dev middleware can't access config, so we provide publicPath.
                 publicPath: config.output.publicPath,
-                // These settings suppress noisy webpack output so only errors are displayed to the console.
-                //logLevel: 'error',
+                // These settings suppress noisy webpack output.
+                // logLevel: 'error',
                 stats: {
                     hash: false,
                     version: false,
@@ -43,10 +43,10 @@ browserSync({
                     errors: false,
                     errorDetails: false,
                     warnings: true,
-                    publicPath: false
-                }
+                    publicPath: false,
+                },
             }),
-            webpackHotMiddleware(bundler)
-        ]
-    }
+            webpackHotMiddleware(bundler),
+        ],
+    },
 });

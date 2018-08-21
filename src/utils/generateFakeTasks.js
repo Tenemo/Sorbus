@@ -1,5 +1,7 @@
+/* eslint-disable */
+
 import fs from 'fs';
-import casual  from 'casual';
+import casual from 'casual';
 import crypto from 'crypto';
 
 /**
@@ -10,7 +12,7 @@ import crypto from 'crypto';
 * @returns {number} Random number between specified min/max arguments.
 */
 function randBetween(min, max) {
-   return Math.floor(Math.random() * (max - min + 1) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function generateSubTasks(tasks, maxDepth = 4, level = 1) {
@@ -26,17 +28,16 @@ function generateSubTasks(tasks, maxDepth = 4, level = 1) {
                 index: i,
                 level,
                 isExpanded: false,
-                urlString: name.replace(/\s+/g, '-').toLowerCase() + '-' + taskId.substring(0,8),
+                urlString: `${name.replace(/\s+/g, '-').toLowerCase() }-${taskId.substring(0, 8)}`,
                 id: taskId,
                 description: casual.sentences(randBetween(1, 2)),
                 children: generateSubTasks(tasks, randBetween(1, maxDepth), level + 1),
-                text: casual.sentences(randBetween(15, 60))
+                text: casual.sentences(randBetween(15, 60)),
             };
             children[i] = taskId;
         }
     }
     return children;
-
 }
 
 function generateTasks() {
@@ -50,11 +51,11 @@ function generateTasks() {
             index: i,
             level: 0,
             isExpanded: false,
-            urlString: name.replace(/\s+/g, '-').toLowerCase() + '-' + taskId.substring(0,8),
+            urlString: `${name.replace(/\s+/g, '-').toLowerCase() }-${taskId.substring(0, 8)}`,
             id: taskId,
             description: casual.sentences(randBetween(1, 3)),
             children: generateSubTasks(tasks),
-            text: casual.sentences(randBetween(15, 60))
+            text: casual.sentences(randBetween(15, 60)),
         };
     }
     return tasks;
@@ -68,13 +69,13 @@ function generateTasksUrlMap(tasks) {
     return tasksUrlMap;
 }
 
-export function generateData() {
+export default function generateData() {
     const path = `${__dirname}/fakeTasks.json`;
     const tasks = generateTasks();
     const data = {
         rootTasks: Object.values(tasks).filter(value => value.level === 0).map(value => value.id),
         tasksUrlMap: generateTasksUrlMap(tasks),
-        tasksData: tasks
+        tasksData: tasks,
     };
     fs.writeFileSync(path, JSON.stringify(data, null, 4), (err) => {
         if (err) {

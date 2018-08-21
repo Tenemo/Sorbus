@@ -19,6 +19,10 @@ class NotFound extends React.Component {
 }
 
 NotFound.propTypes = {
-    name: PropTypes.string
+    name: PropTypes.string,
 };
+NotFound.defaultProps = {
+    name: '',
+};
+
 export default NotFound;

@@ -8,10 +8,10 @@ console.log(chalkProcessing('Starting dist server.'));
 browserSync({
     port: 4000,
     ui: {
-        port: 4001
+        port: 4001,
     },
     server: {
-        baseDir: 'dist'
+        baseDir: 'dist',
     },
-    middleware: [historyApiFallback()]
+    middleware: [historyApiFallback()],
 });
