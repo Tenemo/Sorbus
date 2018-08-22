@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import shrugFlower from 'static/shrugFlower.png';
 import './notFound.scss';
 import PropTypes from 'prop-types';
 
-class NotFound extends React.Component {
+class NotFound extends PureComponent {
     render() {
         return (
             <section className="notFound">

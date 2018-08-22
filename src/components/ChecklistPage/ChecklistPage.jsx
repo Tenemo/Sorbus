@@ -6,7 +6,7 @@ import './checklistPage.scss';
 import Task from './Task/Task';
 import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
 
-export class ChecklistPage extends React.Component {
+export class ChecklistPage extends React.PureComponent {
     render() {
         return (
             <section className="checklistPage">

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './task.scss';
 import NotFound from 'components/NotFound/NotFound';
 
-class Task extends Component {
+class Task extends PureComponent {
     render() {
         if (this.props.tasksUrlMap.get(this.props.match.params.taskUrl) === undefined) {
             return <NotFound name={`task with URL "${this.props.match.params.taskUrl}"`} />;

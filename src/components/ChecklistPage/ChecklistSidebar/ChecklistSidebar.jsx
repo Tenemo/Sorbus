@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './checklistSidebar.scss';
 import TaskList from './TaskList/TaskList';
 
-class ChecklistSidebar extends Component {
+class ChecklistSidebar extends PureComponent {
     render() {
         return (
             <div className="checklistSidebar">
