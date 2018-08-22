@@ -13,7 +13,7 @@ class TaskListHeader extends Component {
 }
 
 TaskListHeader.propTypes = {
-
+    task: PropTypes.object.isRequired,
 };
 
 export default TaskListHeader;

@@ -6,8 +6,14 @@ import NotFound from 'components/NotFound/NotFound';
 
 class Task extends Component {
     render() {
-        if (this.props.tasksUrlMap.get(this.props.match.params.taskUrl) === undefined) return <NotFound name={'task with URL "' + this.props.match.params.taskUrl + '"'}/>;
-        const task = this.props.tasksData.get(this.props.tasksUrlMap.get(this.props.match.params.taskUrl));
+        if (this.props.tasksUrlMap.get(this.props.match.params.taskUrl) === undefined) {
+            return <NotFound name={`task with URL "${this.props.match.params.taskUrl}"`} />;
+        }
+        const task = this.props.tasksData.get(
+            this.props.tasksUrlMap.get(
+                this.props.match.params.taskUrl,
+            ),
+        );
         return (
             <React.Fragment>
                 <h2>{task.get('name')}</h2>
@@ -21,16 +27,22 @@ class Task extends Component {
 Task.propTypes = {
     match: PropTypes.object,
     tasksData: PropTypes.object,
-    tasksUrlMap: PropTypes.object
+    tasksUrlMap: PropTypes.object,
+};
+
+Task.defaultProps = {
+    match: null,
+    tasksData: null,
+    tasksUrlMap: null,
 };
 
 function mapStateToProps(state) {
     return {
         tasksData: state.get('tasks').get('tasksData'),
-        tasksUrlMap: state.get('tasks').get('tasksUrlMap')
+        tasksUrlMap: state.get('tasks').get('tasksUrlMap'),
     };
 }
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
 )(Task);

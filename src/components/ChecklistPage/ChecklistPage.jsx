@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import './checklistPage.scss';
 
 import Task from './Task/Task';
@@ -28,7 +27,6 @@ export class ChecklistPage extends React.Component {
                     </Switch>
                 </div>
             </section>
-
         );
     }
 }
@@ -40,12 +38,4 @@ ChecklistPage.defaultProps = {
     match: null,
 };
 
-function mapDispatchToProps(dispatch) {
-    return {
-    };
-}
-
-export default withRouter(connect(
-    null,
-    mapDispatchToProps,
-)(ChecklistPage));
+export default ChecklistPage;

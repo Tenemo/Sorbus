@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
-import * as tasksActions from 'actions/tasksActions';
 import './checklistSidebar.scss';
 import TaskList from './TaskList/TaskList';
-import DropdownToggle from './DropdownToggle';
 
 class ChecklistSidebar extends Component {
     render() {

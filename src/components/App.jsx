@@ -49,7 +49,7 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-    actions: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired, // eslint-disable-line react/no-unused-prop-types
 };
 
 function mapDispatchToProps(dispatch) {
