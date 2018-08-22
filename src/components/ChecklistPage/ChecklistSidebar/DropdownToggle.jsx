@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-const DropdownToggle = ({ toggleTaskExpanded, taskId, isExpanded }) => (
-    <span
-        className="dropdownToggle"
-        onClick={toggleTaskExpanded}
-        onKeyPress={toggleTaskExpanded}
-        taskid={taskId}
-        role="button"
-        tabIndex={0}
-    >
-        {(isExpanded)
-            ? 'v'
-            : '>'
-        }
-        {' '}
-    </span>
-);
+export class DropdownToggle extends PureComponent {
+    render() {
+        return (
+            <span
+                className="dropdownToggle"
+                onClick={this.props.toggleTaskExpanded}
+                onKeyPress={this.props.toggleTaskExpanded}
+                taskid={this.props.taskId}
+                role="button"
+                tabIndex={0}
+            >
+                {(this.props.isExpanded)
+                    ? 'v'
+                    : '>'
+                }
+                {' '}
+            </span>
+        );
+    }
+}
 
 DropdownToggle.propTypes = {
     toggleTaskExpanded: PropTypes.func.isRequired,
