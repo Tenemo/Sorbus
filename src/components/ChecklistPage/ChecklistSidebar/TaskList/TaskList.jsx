@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import * as tasksActions from 'actions/tasksActions';
 import { bindActionCreators } from 'redux';
 import DropdownToggle from '../DropdownToggle';
+import TaskListItem from './TaskListItem/TaskListItem';
 
 class TaskList extends Component {
     toggleTaskExpanded = (event) => {
@@ -13,41 +13,39 @@ class TaskList extends Component {
     }
 
     render() {
+        const { task } = this.props;
         return (
-            <ol className="taskList">
-                {this.props.tasks.map((childId) => {
-                    const child = this.props.tasksData.get(childId);
-                    return (
-                        <li
-                            key={childId}
-                            className="taskListItem"
-                        >
-                            {!child.get('children').isEmpty()
-                                && (
-                                    <DropdownToggle
-                                        toggleTaskExpanded={this.toggleTaskExpanded}
-                                        taskId={childId}
-                                        isExpanded={child.get('isExpanded')}
-                                    />
-                                )
-                            }
-                            <Link to={`/checklist/${child.get('urlString')}`}>
-                                {child.get('name')}
-                            </Link>
-                            {child.get('isExpanded')
-                                && <TaskListWrapper tasks={child.get('children')} />
-                            }
-                        </li>
-                    );
-                })}
-            </ol>
+            <li className="taskList">
+                {task.get('id') !== 'rootTask'
+                    && (
+                        <React.Fragment>
+
+                            <DropdownToggle
+                                toggleTaskExpanded={this.toggleTaskExpanded}
+                                taskId={task.get('id')}
+                                isExpanded={task.get('isExpanded')}
+                            />
+                            {task.get('name')}
+                        </React.Fragment>
+                    )
+                }
+                {task.get('isExpanded')
+                    && (
+                        <ol>
+                            {task.get('children').map(childId => (this.props.tasksData.get(childId).get('children')
+                                ? <TaskListWrapper key={childId} task={this.props.tasksData.get(childId)} />
+                                : <TaskListItem key={childId} isRoot={task.get('id') === 'rootTask'} />))}
+                        </ol>
+                    )
+                }
+            </li>
         );
     }
 }
 
 TaskList.propTypes = {
     actions: PropTypes.object.isRequired,
-    tasks: PropTypes.object.isRequired,
+    task: PropTypes.object.isRequired,
     tasksData: PropTypes.object.isRequired,
 };
 
@@ -63,6 +61,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
+// Redux doesn't handle connected component recurrency without a wrapping component
 const TaskListWrapper = connect(
     mapStateToProps,
     mapDispatchToProps,

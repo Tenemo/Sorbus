@@ -73,7 +73,16 @@ export default function generateData() {
     const path = `${__dirname}/fakeTasks.json`;
     const tasks = generateTasks();
     const data = {
-        rootTasks: Object.values(tasks).filter(value => value.level === 0).map(value => value.id),
+        rootTask: {
+            name: "Tasks",
+            isDone: false,
+            index: -1,
+            level: -1,
+            isExpanded: true,
+            id: "rootTask",
+            children: Object.values(tasks).filter(value => value.level === 0).map(value => value.id),
+            text: ""
+        },
         tasksUrlMap: generateTasksUrlMap(tasks),
         tasksData: tasks,
     };
