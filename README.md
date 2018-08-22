@@ -28,7 +28,3 @@ Demo checklist app
 - https://reactjs.org/blog/2016/01/12/discontinuing-ie8-support.html
 - redux 4.0.0 dropped support for IE <11, potential downgrade necessary, in that case replace connected-react-router https://github.com/reduxjs/redux/issues/1342
 - <IE11 browsers are unsupported by Microsoft, they don't receive security updates and are a vulnerability https://www.microsoft.com/en-us/windowsforbusiness/end-of-ie-support
-If legacy browsers need to be supported:
-- babel-polyfill
-- change babel config to cover older browsers
-- eventsource-polyfill
