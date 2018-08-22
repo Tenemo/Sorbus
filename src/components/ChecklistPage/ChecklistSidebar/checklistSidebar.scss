@@ -1,15 +1,5 @@
 @import 'variables';
 .checklistSidebar {
-    ol {
-        padding-left: 17px;
-    }
-    li {
-        padding-top: 10px;
-    }
-    user-select: none;
-    .rootTask {
-        font-weight: bold;
-    }
     .dropdownToggle {
         color: lighten($contrast, 30%);
         cursor: pointer;

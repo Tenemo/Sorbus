@@ -1,13 +1,12 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-class TaskListItem extends PureComponent {
+class TaskListItem extends Component {
     render() {
-        console.log('TaskListItem render');
         return (
             <li>
-                <Link to={`/checklist/${child.get('urlString')}`}>
+                <Link to={`/checklist/${this.props.task.get('urlString')}`}>
                     {this.props.task.get('name')}
                 </Link>
             </li>

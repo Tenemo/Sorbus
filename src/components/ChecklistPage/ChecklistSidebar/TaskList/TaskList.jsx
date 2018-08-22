@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as tasksActions from 'actions/tasksActions';
 import { bindActionCreators } from 'redux';
+import TaskListHeader from './TaskListHeader/TaskListHeader';
 import DropdownToggle from '../DropdownToggle';
 import TaskListItem from './TaskListItem/TaskListItem';
+import './taskList.scss';
 
 class TaskList extends Component {
     toggleTaskExpanded = (event) => {
@@ -14,27 +16,32 @@ class TaskList extends Component {
 
     render() {
         const { task } = this.props;
+        const isRoot = task.get('id') === 'rootTask';
         return (
             <li className="taskList">
-                {task.get('id') !== 'rootTask'
+                {!isRoot
                     && (
                         <React.Fragment>
-
-                            <DropdownToggle
-                                toggleTaskExpanded={this.toggleTaskExpanded}
-                                taskId={task.get('id')}
-                                isExpanded={task.get('isExpanded')}
-                            />
-                            {task.get('name')}
+                            {!task.get('children').isEmpty() && (
+                                <DropdownToggle
+                                    toggleTaskExpanded={this.toggleTaskExpanded}
+                                    taskId={task.get('id')}
+                                    isExpanded={task.get('isExpanded')}
+                                />
+                            )}
+                            <TaskListHeader task={task} />
                         </React.Fragment>
                     )
                 }
                 {task.get('isExpanded')
                     && (
                         <ol>
-                            {task.get('children').map(childId => (this.props.tasksData.get(childId).get('children')
-                                ? <TaskListWrapper key={childId} task={this.props.tasksData.get(childId)} />
-                                : <TaskListItem key={childId} isRoot={task.get('id') === 'rootTask'} />))}
+                            {task.get('children').map((childId) => {
+                                const child = this.props.tasksData.get(childId);
+                                return (!child.get('children').isEmpty()
+                                    ? <TaskListWrapper key={childId} task={child} />
+                                    : <TaskListItem key={childId} task={child} />);
+                            })}
                         </ol>
                     )
                 }

@@ -1,0 +1,21 @@
+@import 'variables';
+.taskList {
+    ol {
+        padding-left: 17px;
+    }
+    li {
+        padding-top: 10px;
+        user-select: none;
+    }
+    a {
+        text-decoration: none;
+        &.taskListHeader {
+            font-weight: bold;
+            color: $primary;
+        }
+    }
+}
+
+li.taskList:only-of-type {
+    list-style-type: none;
+}

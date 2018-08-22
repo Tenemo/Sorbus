@@ -11,8 +11,8 @@ const DropdownToggle = ({ toggleTaskExpanded, taskId, isExpanded }) => (
         tabIndex={0}
     >
         {(isExpanded)
-            ? <React.Fragment>v</React.Fragment>
-            : <React.Fragment>&#62;</React.Fragment>
+            ? 'v'
+            : '>'
         }
         {' '}
     </span>

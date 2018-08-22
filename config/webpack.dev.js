@@ -14,8 +14,10 @@ export default {
     entry: [
         'babel-polyfill',
         'eventsource-polyfill', // Hot reloading with IE
-        'webpack-hot-middleware/client?reload=true',
+        'react', // Include this to enforce order
+        'react-dom', // Include this to enforce order
         path.resolve(__dirname, '../src/index.jsx'),
+        'webpack-hot-middleware/client?reload=true&quiet=true',
     ],
     target: 'web',
     output: {
