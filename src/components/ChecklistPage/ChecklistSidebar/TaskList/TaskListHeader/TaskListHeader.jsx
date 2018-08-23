@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 
 class TaskListHeader extends PureComponent {
     render() {
+        const { task } = this.props;
         return (
-            <Link to={`/checklist/${this.props.task.get('urlString')}`} className="taskListHeader">
-                {this.props.task.get('name')}
+            <Link to={`/checklist/${task.get('urlString')}`} className="taskListHeader">
+                {task.get('name')}
             </Link>
         );
     }

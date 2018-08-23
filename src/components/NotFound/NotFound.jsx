@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 class NotFound extends PureComponent {
     render() {
+        const { name } = this.props;
         return (
             <section className="notFound">
                 <h1>404</h1>
@@ -12,7 +13,7 @@ class NotFound extends PureComponent {
                     src={shrugFlower}
                     alt="Flower shrugging and smirking, because the page was not found."
                 />
-                <h2>Sorry, {this.props.name} not found!</h2>
+                <h2>Sorry, {name} not found!</h2>
             </section>
         );
     }

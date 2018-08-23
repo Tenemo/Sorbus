@@ -8,6 +8,7 @@ import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
 
 export class ChecklistPage extends React.PureComponent {
     render() {
+        const { match } = this.props;
         return (
             <section className="checklistPage">
                 <div className="sidebar">
@@ -16,7 +17,7 @@ export class ChecklistPage extends React.PureComponent {
                 <div className="taskContainer">
                     <Switch>
                         <Route
-                            path={`${this.props.match.url}/:taskUrl`}
+                            path={`${match.url}/:taskUrl`}
                             component={Task}
                         />
                         <Route

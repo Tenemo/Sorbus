@@ -65,7 +65,12 @@
             1,
             4
         ],
-        "react/jsx-one-expression-per-line": 0,
+        "react/jsx-one-expression-per-line": [
+            0,
+            {
+                "allow": "single-child"
+            }
+        ],
         "no-console": 1,
         "no-debugger": 1,
         "no-var": 1,
