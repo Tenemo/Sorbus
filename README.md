@@ -7,6 +7,7 @@ Demo checklist app
 - styles for mobile browsers? responsive? tablets? touch events?
 - check prod bundle size, gzip, DedupePlugin, UglifyJsPlugin, AggressiveMergingPlugin
 - cache corruption caused by some bugged module, rimraf-ing .cache on every start is a bad fix, but everything seems to be working
+- rewrite PropTypes to be detailed
 - separate router file
 
 ## TODO low priority

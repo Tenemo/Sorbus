@@ -41,7 +41,9 @@
                 "alias": {
                     "actions": "./src/actions",
                     "components": "./src/components",
+                    "containers": "./src/containers",
                     "reducers": "./src/reducers",
+                    "selectors": "./src/selectors",
                     "static": "./src/static",
                     "styles": "./src/styles",
                     "utils": "./src/utils"

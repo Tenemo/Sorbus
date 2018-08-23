@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as tasksActions from 'actions/tasksActions';
 import { bindActionCreators } from 'redux';
+import { getTasks } from 'selectors/TasksSelectors';
 import TaskListHeader from './TaskListHeader/TaskListHeader';
 import DropdownToggle from '../DropdownToggle';
 import TaskListItem from './TaskListItem/TaskListItem';
 import './taskList.scss';
 
-class TaskList extends Component {
+class TaskList extends PureComponent {
     toggleTaskExpanded = (event) => {
         event.preventDefault();
         this.props.actions.toggleTaskExpanded(event.target.getAttribute('taskid'));
     }
 
     render() {
-        const { task } = this.props;
+        const { task, childrenTasks } = this.props;
         const isRoot = task.get('id') === 'rootTask';
         return (
             <li className="taskList">
@@ -36,8 +37,8 @@ class TaskList extends Component {
                 {task.get('isExpanded')
                     && (
                         <ol>
-                            {task.get('children').map((childId) => {
-                                const child = this.props.tasksData.get(childId);
+                            {childrenTasks.map((child) => {
+                                const childId = child.get('id');
                                 return (!child.get('children').isEmpty()
                                     ? <TaskListWrapper key={childId} task={child} />
                                     : <TaskListItem key={childId} task={child} />);
@@ -53,12 +54,12 @@ class TaskList extends Component {
 TaskList.propTypes = {
     actions: PropTypes.object.isRequired,
     task: PropTypes.object.isRequired,
-    tasksData: PropTypes.object.isRequired,
+    childrenTasks: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
-        tasksData: state.get('tasks').get('tasksData'),
+        childrenTasks: ownProps.task.get('children').map(childId => getTasks(state).get(childId)),
     };
 }
 

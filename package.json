@@ -1,6 +1,6 @@
 {
     "name": "sorbus",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -54,6 +54,7 @@
         "react-router-dom": "^4.3.1",
         "redux": "^4.0.0",
         "redux-immutable": "^4.0.0",
+        "reselect": "^3.0.1",
         "sanitize.css": "^6.0.0"
     },
     "devDependencies": {
