@@ -14,7 +14,7 @@ export class ChecklistPage extends React.PureComponent {
         return (
             <section className="checklistPage">
                 <div className="checklistSidebar">
-                    <TaskList task={this.props.rootTask} />
+                    <TaskList taskId="rootTask" />
                 </div>
                 <div className="taskContainer">
                     <Switch>
@@ -36,7 +36,6 @@ export class ChecklistPage extends React.PureComponent {
 
 ChecklistPage.propTypes = {
     match: PropTypes.object,
-    rootTask: PropTypes.object.isRequired,
 };
 ChecklistPage.defaultProps = {
     match: null,
@@ -44,7 +43,6 @@ ChecklistPage.defaultProps = {
 
 function mapStateToProps(state) {
     return {
-        rootTask: state.get('tasks').get('rootTask'),
     };
 }
 

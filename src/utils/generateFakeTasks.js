@@ -15,11 +15,11 @@ function randBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function generateSubTasks(tasks, maxDepth = 4, level = 1) {
+function generateSubTasks(tasks, maxDepth = 5, level = 1) {
     maxDepth--;
     const children = [];
     if (maxDepth > 0) {
-        for (let i = 0; i < randBetween(3, 7); i++) {
+        for (let i = 0; i < randBetween(3, 14); i++) {
             const name = casual.catch_phrase;
             const taskId = crypto.createHash('md5').update(name + Date.now()).digest('hex');
             tasks[taskId] = {
@@ -27,7 +27,7 @@ function generateSubTasks(tasks, maxDepth = 4, level = 1) {
                 isDone: false,
                 index: i,
                 level,
-                isExpanded: false,
+                isExpanded: true,
                 urlString: `${name.replace(/\s+/g, '-').toLowerCase() }-${taskId.substring(0, 8)}`,
                 id: taskId,
                 description: casual.sentences(randBetween(1, 2)),
@@ -50,7 +50,7 @@ function generateTasks() {
             isDone: false,
             index: i,
             level: 0,
-            isExpanded: false,
+            isExpanded: true,
             urlString: `${name.replace(/\s+/g, '-').toLowerCase() }-${taskId.substring(0, 8)}`,
             id: taskId,
             description: casual.sentences(randBetween(1, 3)),
@@ -72,8 +72,7 @@ function generateTasksUrlMap(tasks) {
 export default function generateData() {
     const path = `${__dirname}/fakeTasks.json`;
     const tasks = generateTasks();
-    const data = {
-        rootTask: {
+    tasks["rootTask"] = {
             name: "Tasks",
             isDone: false,
             index: -1,
@@ -82,7 +81,8 @@ export default function generateData() {
             id: "rootTask",
             children: Object.values(tasks).filter(value => value.level === 0).map(value => value.id),
             text: ""
-        },
+        }
+    const data = {
         tasksUrlMap: generateTasksUrlMap(tasks),
         tasksData: tasks,
     };
