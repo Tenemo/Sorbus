@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as tasksActions from 'actions/tasksActions';
 import { bindActionCreators } from 'redux';
-import { getTasks } from 'selectors/TasksSelectors';
+import { makeGetChildrenTasks } from 'selectors/TasksSelectors';
+import DropdownToggle from 'components/DropdownToggle/DropdownToggle';
 import TaskListHeader from './TaskListHeader/TaskListHeader';
-import DropdownToggle from '../DropdownToggle';
 import TaskListItem from './TaskListItem/TaskListItem';
 import './taskList.scss';
 
@@ -18,6 +18,7 @@ class TaskList extends PureComponent {
     render() {
         const { task, childrenTasks } = this.props;
         const isRoot = task.get('id') === 'rootTask';
+        console.warn(`${task.get('name')} rendered.`);
         return (
             <li className="taskList">
                 {!isRoot
@@ -57,11 +58,13 @@ TaskList.propTypes = {
     childrenTasks: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state, ownProps) {
-    return {
-        childrenTasks: ownProps.task.get('children').map(childId => getTasks(state).get(childId)),
-    };
-}
+const makeMapStateToProps = () => {
+    const getChildrenTasks = makeGetChildrenTasks();
+    const mapStateToProps = (state, ownProps) => ({
+        childrenTasks: getChildrenTasks(state, ownProps.task.get('children')),
+    });
+    return mapStateToProps;
+};
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -71,7 +74,7 @@ function mapDispatchToProps(dispatch) {
 
 // Redux doesn't handle connected component recurrency without a wrapping component
 const TaskListWrapper = connect(
-    mapStateToProps,
+    makeMapStateToProps,
     mapDispatchToProps,
 )(TaskList);
 

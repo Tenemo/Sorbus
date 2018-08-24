@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import 'sanitize.css';
 import '../styles/global.scss';
-import ChecklistPage from 'components/ChecklistPage/ChecklistPage';
-import EditorPage from 'components/EditorPage/EditorPage';
-import Header from './common/Header/Header';
+import ChecklistPage from 'containers/ChecklistPage/ChecklistPage';
+import EditorPage from 'containers/EditorPage/EditorPage';
+import Header from 'components/Header/Header';
 import NotFound from './NotFound/NotFound';
 
 const App = () => (

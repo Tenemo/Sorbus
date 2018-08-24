@@ -1,18 +1,20 @@
+import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import './checklistPage.scss';
+import { getTasks, getRootTask } from 'selectors/TasksSelectors';
 
-import Task from './Task/Task';
-import ChecklistSidebar from './ChecklistSidebar/ChecklistSidebar';
+import TaskList from 'components/TaskList/TaskList';
+import Task from 'components/Task/Task';
 
 export class ChecklistPage extends React.PureComponent {
     render() {
         const { match } = this.props;
         return (
             <section className="checklistPage">
-                <div className="sidebar">
-                    <ChecklistSidebar />
+                <div className="checklistSidebar">
+                    <TaskList task={this.props.rootTask} />
                 </div>
                 <div className="taskContainer">
                     <Switch>
@@ -34,9 +36,18 @@ export class ChecklistPage extends React.PureComponent {
 
 ChecklistPage.propTypes = {
     match: PropTypes.object,
+    rootTask: PropTypes.object.isRequired,
 };
 ChecklistPage.defaultProps = {
     match: null,
 };
 
-export default ChecklistPage;
+function mapStateToProps(state) {
+    return {
+        rootTask: state.get('tasks').get('rootTask'),
+    };
+}
+
+export default connect(
+    mapStateToProps,
+)(ChecklistPage);

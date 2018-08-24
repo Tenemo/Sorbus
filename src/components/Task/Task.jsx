@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getTasks } from 'selectors/TasksSelectors';
 import './task.scss';
 import NotFound from 'components/NotFound/NotFound';
 
