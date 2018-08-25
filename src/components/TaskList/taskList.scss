@@ -1,7 +1,11 @@
 @import 'variables';
 .taskList {
-    ol {
-        padding-left: 17px;
+    &.rootTask>ul {
+        padding-left: 0px;
+        margin: 0px;
+    }
+    ul {
+        padding-left: 25px;
     }
     li {
         padding-top: 10px;
@@ -13,6 +17,16 @@
             font-weight: bold;
             color: $primary;
         }
+    }
+    .taskList {
+        .taskListItem {
+            border-left: 1px $contrast solid;
+            padding-left: 22px;
+            margin-left: -22px;
+        }
+    }
+    .taskListItem {
+        list-style-type: none;
     }
 }
 

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 export class DropdownToggle extends PureComponent {
     render() {
-        const { toggleTaskExpanded, taskId, isExpanded } = this.props;
+        const { onDropdownClick, id, isExpanded } = this.props;
         return (
             <span
                 className="dropdownToggle"
-                onClick={toggleTaskExpanded}
-                onKeyPress={toggleTaskExpanded}
-                taskid={taskId}
+                onClick={onDropdownClick}
+                onKeyPress={onDropdownClick}
+                id={id}
                 role="button"
                 tabIndex={0}
             >
@@ -24,8 +24,8 @@ export class DropdownToggle extends PureComponent {
 }
 
 DropdownToggle.propTypes = {
-    toggleTaskExpanded: PropTypes.func.isRequired,
-    taskId: PropTypes.string.isRequired,
+    onDropdownClick: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
     isExpanded: PropTypes.bool.isRequired,
 };
 
