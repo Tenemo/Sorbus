@@ -78,6 +78,7 @@ const makeMapStateToProps = () => {
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(tasksActions, dispatch),
 });
+
 // Redux doesn't handle connected component recurrency without a wrapping component
 const TaskListWrapper = connect(
     makeMapStateToProps,
