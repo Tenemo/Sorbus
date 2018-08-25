@@ -1,20 +1,16 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getTasks } from 'selectors/TasksSelectors';
+import { getTaskFromUrl } from 'selectors/TasksSelectors';
 import './task.scss';
 import NotFound from 'components/NotFound/NotFound';
 
 class Task extends PureComponent {
     render() {
-        if (this.props.tasksUrlMap.get(this.props.match.params.taskUrl) === undefined) {
-            return <NotFound name={`task with URL "${this.props.match.params.taskUrl}"`} />;
+        const { task, match } = this.props;
+        if (!task) {
+            return <NotFound name={`task with URL "${match.params.taskUrl}"`} />;
         }
-        const task = this.props.tasksData.get(
-            this.props.tasksUrlMap.get(
-                this.props.match.params.taskUrl,
-            ),
-        );
         return (
             <React.Fragment>
                 <h2>{task.get('name')}</h2>
@@ -27,20 +23,17 @@ class Task extends PureComponent {
 
 Task.propTypes = {
     match: PropTypes.object,
-    tasksData: PropTypes.object,
-    tasksUrlMap: PropTypes.object,
+    task: PropTypes.object,
 };
 
 Task.defaultProps = {
     match: null,
-    tasksData: null,
-    tasksUrlMap: null,
+    task: null,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
-        tasksData: state.get('tasks').get('tasksData'),
-        tasksUrlMap: state.get('tasks').get('tasksUrlMap'),
+        task: getTaskFromUrl(state, ownProps.match.params.taskUrl),
     };
 }
 
