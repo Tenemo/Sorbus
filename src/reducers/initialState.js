@@ -5,6 +5,6 @@ const editor = {
 };
 const initialState = fromJS({
     editor,
-    tasks: fakeTasks
+    tasks: fakeTasks,
 });
 export default initialState;

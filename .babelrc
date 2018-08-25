@@ -12,8 +12,11 @@
             {
                 "targets": {
                     "browsers": [
-                        "last 2 versions",
-                        "Explorer 11"
+                        "Chrome >= 49",
+                        "FireFox >= 44",
+                        "Safari >= 7",
+                        "Explorer 11",
+                        "last 4 Edge versions"
                     ]
                 },
                 "useBuiltIns": true
@@ -38,7 +41,9 @@
                 "alias": {
                     "actions": "./src/actions",
                     "components": "./src/components",
+                    "containers": "./src/containers",
                     "reducers": "./src/reducers",
+                    "selectors": "./src/selectors",
                     "static": "./src/static",
                     "styles": "./src/styles",
                     "utils": "./src/utils"

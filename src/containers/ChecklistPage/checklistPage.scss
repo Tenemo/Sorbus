@@ -1,0 +1,15 @@
+@import 'variables';
+.checklistPage {
+    display: flex;
+    .checklistSidebar {
+        max-width: 40%;
+        min-width: 40%;
+        padding-right: 20px;
+        margin-right: 5px;
+        border-right: solid $contrast 2px;
+        .dropdownToggle {
+            color: lighten($contrast, 30%);
+            cursor: pointer;
+        }
+    }
+}
