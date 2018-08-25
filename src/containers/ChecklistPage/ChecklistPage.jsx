@@ -1,9 +1,7 @@
-import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import './checklistPage.scss';
-import { getTasks, getRootTask } from 'selectors/TasksSelectors';
 
 import TaskList from 'components/TaskList/TaskList';
 import Task from 'components/Task/Task';
@@ -41,11 +39,4 @@ ChecklistPage.defaultProps = {
     match: null,
 };
 
-function mapStateToProps(state) {
-    return {
-    };
-}
-
-export default connect(
-    mapStateToProps,
-)(ChecklistPage);
+export default ChecklistPage;

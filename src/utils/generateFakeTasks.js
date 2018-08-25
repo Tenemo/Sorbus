@@ -27,7 +27,7 @@ function generateSubTasks(tasks, maxDepth = 5, level = 1) {
                 isDone: false,
                 index: i,
                 level,
-                isExpanded: true,
+                isExpanded: false,
                 urlString: `${name.replace(/\s+/g, '-').toLowerCase() }-${taskId.substring(0, 8)}`,
                 id: taskId,
                 description: casual.sentences(randBetween(1, 2)),
@@ -50,7 +50,7 @@ function generateTasks() {
             isDone: false,
             index: i,
             level: 0,
-            isExpanded: true,
+            isExpanded: false,
             urlString: `${name.replace(/\s+/g, '-').toLowerCase() }-${taskId.substring(0, 8)}`,
             id: taskId,
             description: casual.sentences(randBetween(1, 3)),
@@ -70,6 +70,7 @@ function generateTasksUrlMap(tasks) {
 }
 
 export default function generateData() {
+    console.log(`Generating fake task data...`)
     const path = `${__dirname}/fakeTasks.json`;
     const tasks = generateTasks();
     tasks["rootTask"] = {
@@ -91,6 +92,7 @@ export default function generateData() {
             console.log(err); // eslint-disable-line no-console
         }
     });
+    console.log(`Task data successfully generated!`)
 }
 
 generateData();

@@ -4,14 +4,21 @@ export const getTasks = state => state.get('tasks').get('tasksData');
 export const getTasksUrlMap = state => state.get('tasks').get('tasksUrlMap');
 // export const getRootTask = state => state.get('tasks').get('rootTask');
 
-// getChildrenTasks
-const getTask = createSelector(
-
+export const getTask = createSelector(
+    [getTasks, (state, taskId) => taskId],
+    (tasks, taskId) => tasks.get(taskId),
 );
+export const makeGetTask = () => getTask;
 
-const targetChildren = (state, children) => children;
-
-export const makeGetChildrenTasks = () => createSelector(
-    [getTasks, targetChildren],
-    (getTasks, targetChildren) => targetChildren.map(childId => getTasks.get(childId)),
+export const getChildrenTasks = createSelector(
+    [getTasks, getTask],
+    (tasks, task) => task.get('children').map(childId => tasks.get(childId)),
 );
+export const makeGetChildrenTasks = () => getChildrenTasks;
+
+export const getTaskFromUrl = createSelector(
+    [getTasks, getTasksUrlMap, (state, taskUrl) => taskUrl],
+    (tasks, tasksUrlMap, taskUrl) => tasks.get(tasksUrlMap.get(taskUrl)),
+);
+export const makeGetTaskFromUrl = () => getTaskFromUrl;
+

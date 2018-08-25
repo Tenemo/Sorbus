@@ -65,6 +65,13 @@
             1,
             4
         ],
+        "react/destructuring-assignment": [
+            2,
+            "always",
+            {
+                "ignoreClassFields": true
+            }
+        ],
         "react/jsx-one-expression-per-line": [
             0,
             {
