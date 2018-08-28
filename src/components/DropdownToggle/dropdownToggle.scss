@@ -1,0 +1,10 @@
+@import 'variables';
+.dropdownToggle {
+    color: lighten($contrast, 20%);
+    cursor: pointer;
+    &:focus {
+        outline: none;
+        color: lighten($contrast, 40%);
+        font-weight: bold;
+    }
+}

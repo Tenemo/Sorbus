@@ -6,7 +6,7 @@ class TaskListItem extends PureComponent {
     render() {
         const { task } = this.props;
         return (
-            <li className="taskListItem">
+            <li className={`taskListItem ${task.get('isDone') ? 'done' : ''}`}>
                 <Link to={`/checklist/${task.get('urlString')}`}>
                     {task.get('name')}
                 </Link>

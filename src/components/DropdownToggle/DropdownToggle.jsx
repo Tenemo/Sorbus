@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import './dropdownToggle.scss';
 import PropTypes from 'prop-types';
 
 export class DropdownToggle extends PureComponent {

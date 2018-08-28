@@ -15,11 +15,11 @@ function randBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function generateSubTasks(tasks, maxDepth = 5, level = 1) {
+function generateSubTasks(tasks, maxDepth = 4, level = 1) {
     maxDepth--;
     const children = [];
     if (maxDepth > 0) {
-        for (let i = 0; i < randBetween(3, 14); i++) {
+        for (let i = 0; i < randBetween(3, 8); i++) {
             const name = casual.catch_phrase;
             const taskId = crypto.createHash('md5').update(name + Date.now()).digest('hex');
             tasks[taskId] = {
@@ -42,7 +42,7 @@ function generateSubTasks(tasks, maxDepth = 5, level = 1) {
 
 function generateTasks() {
     const tasks = {};
-    for (let i = 0; i < randBetween(7, 8); i++) {
+    for (let i = 0; i < randBetween(4, 5); i++) {
         const name = casual.catch_phrase;
         const taskId = crypto.createHash('md5').update(name + Date.now()).digest('hex');
         tasks[taskId] = {

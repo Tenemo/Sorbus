@@ -14,8 +14,7 @@ class TaskList extends Component {
         const { task, childrenTasks } = this.props;
         if (task !== nextProps.task) return true;
         if (nextProps.childrenTasks.size !== childrenTasks.size) return true;
-        nextProps.childrenTasks.forEach((child, index) => (child !== childrenTasks.get(index)));
-        return false;
+        return nextProps.childrenTasks.some((child, index) => child !== childrenTasks.get(index));
     }
 
     toggleTaskExpanded = (event) => {
@@ -48,8 +47,18 @@ class TaskList extends Component {
                             {childrenTasks.map((child) => {
                                 const childId = child.get('id');
                                 return (!child.get('children').isEmpty()
-                                    ? <TaskListWrapper key={childId} taskId={childId} />
-                                    : <TaskListItem key={childId} task={child} />);
+                                    ? (
+                                        <TaskListWrapper
+                                            key={childId}
+                                            taskId={childId}
+                                        />
+                                    )
+                                    : (
+                                        <TaskListItem
+                                            key={childId}
+                                            task={child}
+                                        />
+                                    ));
                             })}
                         </ul>
                     )

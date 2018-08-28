@@ -1,8 +1,15 @@
 @import 'variables';
 .taskList {
-    &.rootTask>ul {
-        padding-left: 0px;
-        margin: 0px;
+    a {
+        text-decoration: none;
+        &.taskListHeader {
+            font-weight: bold;
+            color: $primary;
+        }
+        &.done {
+            text-decoration: line-through;
+            color: gray;
+        }
     }
     ul {
         padding-left: 25px;
@@ -11,11 +18,11 @@
         padding-top: 10px;
         user-select: none;
     }
-    a {
-        text-decoration: none;
-        &.taskListHeader {
-            font-weight: bold;
-            color: $primary;
+    .taskListItem {
+        list-style-type: none;
+        &.done>a {
+            color: gray;
+            text-decoration: line-through;
         }
     }
     .taskList {
@@ -25,8 +32,9 @@
             margin-left: -22px;
         }
     }
-    .taskListItem {
-        list-style-type: none;
+    &.rootTask>ul {
+        padding-left: 0px;
+        margin: 0px;
     }
 }
 

@@ -6,7 +6,10 @@ class TaskListHeader extends PureComponent {
     render() {
         const { task } = this.props;
         return (
-            <Link to={`/checklist/${task.get('urlString')}`} className="taskListHeader">
+            <Link
+                to={`/checklist/${task.get('urlString')}`}
+                className={`taskListHeader ${task.get('isDone') ? 'done' : ''}`}
+            >
                 {task.get('name')}
             </Link>
         );
