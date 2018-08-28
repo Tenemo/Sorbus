@@ -6,20 +6,12 @@ const Header = () => (
     <header>
         <nav className="navbar">
             <li className="nav-item">
-                <NavLink
-                    exact
-                    to="/checklist"
-                    className="nav-link"
-                >
+                <NavLink exact to="/checklist" className="nav-link">
                     Checklist
                 </NavLink>
             </li>
             <li className="nav-item">
-                <NavLink
-                    exact
-                    to="/editor"
-                    className="nav-link"
-                >
+                <NavLink exact to="/editor" className="nav-link">
                     Editor
                 </NavLink>
             </li>

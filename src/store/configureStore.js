@@ -1,7 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 // import { persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
-import { routerMiddleware, connectRouter } from 'connected-react-router/immutable';
+import {
+    routerMiddleware,
+    connectRouter,
+} from 'connected-react-router/immutable';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from '../reducers';
 // const persistConfig = {
@@ -14,18 +17,15 @@ export const history = createHistory();
 
 function configureStoreDev(initialState) {
     const reactRouterMiddleware = routerMiddleware(history);
-    const middleware = [
-        reactRouterMiddleware,
-    ];
+    const middleware = [reactRouterMiddleware];
     // eslint-disable-next-line no-underscore-dangle
-    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    const composeEnhancers =
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     const store = createStore(
         // persistedReducer,
         connectRouter(history)(rootReducer),
         initialState,
-        composeEnhancers(
-            applyMiddleware(...middleware),
-        ),
+        composeEnhancers(applyMiddleware(...middleware)),
     );
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers
@@ -39,20 +39,19 @@ function configureStoreDev(initialState) {
 
 function configureStoreProd(initialState) {
     const reactRouterMiddleware = routerMiddleware(history);
-    const middleware = [
-        reactRouterMiddleware,
-    ];
+    const middleware = [reactRouterMiddleware];
 
     return createStore(
         // persistedReducer,
         connectRouter(history)(rootReducer),
         initialState,
-        compose(
-            applyMiddleware(...middleware),
-        ),
+        compose(applyMiddleware(...middleware)),
     );
 }
 
-const configureStore = process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;
+const configureStore =
+    process.env.NODE_ENV === 'production'
+        ? configureStoreProd
+        : configureStoreDev;
 
 export default configureStore;

@@ -64,18 +64,20 @@ export default {
                             minimize: false,
                             sourceMap: true,
                         },
-                    }, {
+                    },
+                    {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: () => [
-                                autoprefixer,
-                            ],
+                            plugins: () => [autoprefixer],
                             sourceMap: true,
                         },
-                    }, {
+                    },
+                    {
                         loader: 'sass-loader',
                         options: {
-                            includePaths: [path.resolve(__dirname, '../src/styles')],
+                            includePaths: [
+                                path.resolve(__dirname, '../src/styles'),
+                            ],
                             sourceMap: true,
                         },
                     },

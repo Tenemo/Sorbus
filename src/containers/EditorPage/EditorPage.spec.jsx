@@ -3,9 +3,7 @@ import HomePage from './EditorPage';
 
 describe('HomePage', () => {
     it('matches snapshot', () => {
-        const wrapper = shallow(
-            <HomePage />,
-        );
+        const wrapper = shallow(<HomePage />);
         expect(wrapper).toMatchSnapshot();
     });
 });

@@ -2,7 +2,10 @@
 import webpack from 'webpack';
 import config from './webpack.prod';
 import {
-    chalkError, chalkSuccess, chalkWarning, chalkProcessing,
+    chalkError,
+    chalkSuccess,
+    chalkWarning,
+    chalkProcessing,
 } from './chalkConfig';
 
 process.env.NODE_ENV = 'production';

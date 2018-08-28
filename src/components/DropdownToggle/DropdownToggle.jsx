@@ -14,11 +14,7 @@ export class DropdownToggle extends PureComponent {
                 role="button"
                 tabIndex={0}
             >
-                {(isExpanded)
-                    ? 'v'
-                    : '>'
-                }
-                {' '}
+                {isExpanded ? 'v' : '>'}{' '}
             </span>
         );
     }

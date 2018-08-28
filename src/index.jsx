@@ -7,11 +7,6 @@ const store = configureStore();
 // let persistor = persistStore(store);
 
 render(
-    (
-        <Root
-            store={store}
-            history={history}
-        />
-    ),
+    <Root store={store} history={history} />,
     document.getElementById('app'),
 );

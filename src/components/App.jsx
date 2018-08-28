@@ -12,24 +12,10 @@ const App = () => (
         <Header />
         <div className="mainContainer">
             <Switch>
-                <Redirect
-                    exact
-                    from="/"
-                    to="/checklist"
-                />
-                <Route
-                    path="/checklist"
-                    component={ChecklistPage}
-                />
-                <Route
-                    exact
-                    path="/editor"
-                    component={EditorPage}
-                />
-                <Route
-                    path=""
-                    component={NotFound}
-                />
+                <Redirect exact from="/" to="/checklist" />
+                <Route path="/checklist" component={ChecklistPage} />
+                <Route exact path="/editor" component={EditorPage} />
+                <Route path="" component={NotFound} />
             </Switch>
         </div>
     </React.Fragment>

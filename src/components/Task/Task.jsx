@@ -8,20 +8,22 @@ import './task.scss';
 import NotFound from 'components/NotFound/NotFound';
 
 export class Task extends Component {
-    doTask = (event) => {
+    doTask = event => {
         const { actions } = this.props;
         actions.doTask(event.target.id);
-    }
+    };
 
-    undoTask = (event) => {
+    undoTask = event => {
         const { actions } = this.props;
         actions.undoTask(event.target.id);
-    }
+    };
 
     render() {
         const { task, match } = this.props;
         if (!task) {
-            return <NotFound name={`task with URL "${match.params.taskUrl}"`} />;
+            return (
+                <NotFound name={`task with URL "${match.params.taskUrl}"`} />
+            );
         }
         return (
             <div className="task">

@@ -9,9 +9,8 @@ const getTask = createSelector(
 );
 const makeGetTask = () => getTask;
 
-const getChildrenTasks = createSelector(
-    [getTasks, getTask],
-    (tasks, task) => task.get('children').map(childId => tasks.get(childId)),
+const getChildrenTasks = createSelector([getTasks, getTask], (tasks, task) =>
+    task.get('children').map(childId => tasks.get(childId)),
 );
 const makeGetChildrenTasks = () => getChildrenTasks;
 

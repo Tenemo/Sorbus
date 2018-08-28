@@ -19,11 +19,7 @@ export class ChecklistPage extends PureComponent {
                             path={`${match.url}/:taskUrl`}
                             component={Task}
                         />
-                        <Route
-                            path=""
-                            exact
-                            render={() => 'Choose a task!'}
-                        />
+                        <Route path="" exact render={() => 'Choose a task!'} />
                     </Switch>
                 </div>
             </section>
@@ -39,4 +35,3 @@ ChecklistPage.defaultProps = {
 };
 
 export default ChecklistPage;
-

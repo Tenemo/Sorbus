@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'connected-react-router/immutable';
 // import { PersistGate } from 'redux-persist/integration/react';
 import App from './components/App';
 
-const Root = (props) => {
+const Root = props => {
     const { store, history } = props;
     return (
         <Provider store={store}>
