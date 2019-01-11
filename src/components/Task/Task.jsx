@@ -6,6 +6,7 @@ import * as tasksActions from 'actions/tasksActions';
 import { bindActionCreators } from 'redux';
 import './task.scss';
 import NotFound from 'components/NotFound/NotFound';
+import SuperSuperHeader from 'components/SuperSuperHeader';
 
 export class Task extends Component {
     doTask = event => {
@@ -40,7 +41,7 @@ export class Task extends Component {
                     value="Undo task"
                 />
                 <h4>{task.get('isDone') ? 'DONE' : 'NOT DONE'}</h4>
-                <h2>{task.get('name')}</h2>
+                <SuperSuperHeader />
                 <h4>{task.get('description')}</h4>
                 <p>{task.get('text')}</p>
             </div>
