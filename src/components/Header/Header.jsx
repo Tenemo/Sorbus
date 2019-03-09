@@ -1,7 +1,25 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './header.scss';
+import axios from 'axios';
 
+const fetch = () => {
+    axios
+        .post(
+            'http://checkurl.phishtank.com/checkurl',
+            {
+                url: 'https://www.example.org/',
+                format: 'json',
+            },
+            // {
+            //     headers: {
+            //         'Content-Type': 'application/x-www-form-urlencoded',
+            //     },
+            // },
+        )
+        .then(response => console.log(JSON.stringify(response)))
+        .catch(error => console.log(error));
+};
 const Header = () => (
     <header>
         <nav className="navbar">
@@ -15,6 +33,8 @@ const Header = () => (
                     Editor
                 </NavLink>
             </li>
+            {/* eslint-disable-next-line */}
+            <button onClick={fetch}>FETCH</button>
         </nav>
     </header>
 );
